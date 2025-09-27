@@ -135,19 +135,16 @@ def run_queries(conn):
             print("─" * 50)
 
 def display_summary(conn):
-    """Display a summary of database statistics"""
     try:
         print("\n" + "=" * 70)
         print("DATABASE SUMMARY STATISTICS")
         print("=" * 70)
         
-        # Table counts
         tables = ['airline', 'airport', 'baggage', 'baggage_check', 'boarding_pass']
         for table in tables:
             count = pd.read_sql_query(f"SELECT COUNT(*) as count FROM {table}", conn)
             print(f"{table.capitalize():<15}: {count['count'][0]:>4} records")
         
-        # Key metrics
         avg_weight = pd.read_sql_query("SELECT ROUND(AVG(weight_in_kg), 2) as avg FROM baggage", conn)
         heavy_baggage = pd.read_sql_query("SELECT COUNT(*) as heavy FROM baggage WHERE weight_in_kg > 30", conn)
         checked_ratio = pd.read_sql_query("""
