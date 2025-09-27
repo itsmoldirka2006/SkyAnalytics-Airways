@@ -22,10 +22,6 @@ The original dataset is located in `database/airport_dump.sql`. This file contai
 
 ## Sample Analytics
 
-!(docs/analytics_screenshot.png)
-
-*Figure 1: Python script output showing airline analytics including country distribution, baggage check results, and average weights.*
-
-!(docs/pgadmin_analytics.png)
-
-*Figure 2: pgAdmin4 query results showing comprehensive airline analytics including country distribution, baggage check statistics, and average weight analysis.*
+### ER Diagram - Database Schema
+![Database ER Diagram](docs/erd.png)
+*Figure 1: Entity Relationship Diagram showing table structures and relationships.*
