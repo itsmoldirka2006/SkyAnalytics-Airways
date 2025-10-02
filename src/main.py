@@ -12,10 +12,10 @@ def connect_db():
             user="postgres",
             password="0000"
         )
-        print("✅ Connected to database successfully!")
+        print("Connected to database successfully!")
         return conn
     except Exception as e:
-        print(f"❌ Connection error: {e}")
+        print(f"Connection error: {e}")
         return None
 
 def save_chart(fig, filename, description, rows):
