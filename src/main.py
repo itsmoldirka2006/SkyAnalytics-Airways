@@ -4,9 +4,6 @@ import matplotlib.pyplot as plt
 import os
 from export_excel import export_to_excel
 
-# =========================
-# Database connection
-# =========================
 def connect_db():
     try:
         conn = psycopg2.connect(
@@ -21,9 +18,6 @@ def connect_db():
         print(f"❌ Connection error: {e}")
         return None
 
-# =========================
-# Save chart helper
-# =========================
 def save_chart(fig, filename, description, rows):
     os.makedirs("charts", exist_ok=True)
     filepath = os.path.join("charts", filename)
@@ -31,11 +25,7 @@ def save_chart(fig, filename, description, rows):
     plt.close(fig)
     print(f"📊 Saved {filename} | {rows} rows | {description}")
 
-# =========================
-# Queries + Charts
-# =========================
 def create_charts(conn):
-    # 1. Pie chart: baggage check results distribution
     q1 = """
         SELECT bc.check_result, COUNT(*) AS count
         FROM baggage_check bc
@@ -50,7 +40,6 @@ def create_charts(conn):
     ax1.set_title("Baggage Check Results Distribution")
     save_chart(fig1, "pie_baggage_check.png", "Pie chart of baggage check results", len(df1))
 
-    # 2. Bar chart: number of airlines per country
     q2 = """
         SELECT airline_country, COUNT(*) AS airline_count
         FROM airline
@@ -66,7 +55,6 @@ def create_charts(conn):
     ax2.set_ylabel("Number of Airlines")
     save_chart(fig2, "bar_airlines_country.png", "Bar chart of airlines per country", len(df2))
 
-    # 3. Horizontal bar chart: average baggage weight by booking platform
     q3 = """
         SELECT bk.booking_platform, ROUND(AVG(b.weight_in_kg), 2) AS avg_weight
         FROM booking bk
@@ -81,7 +69,6 @@ def create_charts(conn):
     ax3.set_xlabel("Avg Weight (kg)")
     save_chart(fig3, "hbar_avg_baggage.png", "Horizontal bar: avg baggage weight by booking platform", len(df3))
 
-    # 4. Line chart: monthly baggage creation trend
     q4 = """
         SELECT DATE_TRUNC('month', created_date) AS month, COUNT(*) AS baggage_count
         FROM baggage
@@ -96,7 +83,6 @@ def create_charts(conn):
     ax4.set_ylabel("Baggage Count")
     save_chart(fig4, "line_baggage_trend.png", "Line chart of baggage per month", len(df4))
 
-    # 5. Histogram: baggage weight distribution
     q5 = "SELECT weight_in_kg FROM baggage;"
     df5 = pd.read_sql(q5, conn)
     fig5, ax5 = plt.subplots()
@@ -106,7 +92,6 @@ def create_charts(conn):
     ax5.set_ylabel("Frequency")
     save_chart(fig5, "hist_baggage_weight.png", "Histogram of baggage weights", len(df5))
 
-    # 6. Scatter plot: baggage weight vs booking price
     q6 = """
         SELECT b.weight_in_kg, bk.price
         FROM baggage b
@@ -122,9 +107,6 @@ def create_charts(conn):
     ax6.set_ylabel("Weight (kg)")
     save_chart(fig6, "scatter_baggage_price.png", "Scatter: baggage weight vs booking price", len(df6))
 
-# =========================
-# Summary
-# =========================
 def display_summary(conn):
     print("\n" + "="*50)
     print("DATABASE SUMMARY")
@@ -134,18 +116,12 @@ def display_summary(conn):
         df = pd.read_sql(f"SELECT COUNT(*) AS count FROM {t}", conn)
         print(f"{t:<15}: {df['count'][0]} rows")
 
-# =========================
-# Main
-# =========================
 def main():
     conn = connect_db()
     if not conn:
         return
     try:
-        # 1️⃣ Create charts (Part 1 of assignment)
         create_charts(conn)
-
-        # 2️⃣ Export data to Excel (Part 3 of assignment)
         df_airlines = pd.read_sql("SELECT * FROM airline LIMIT 20;", conn)
         df_baggage = pd.read_sql("SELECT * FROM baggage LIMIT 20;", conn)
 
@@ -156,15 +132,13 @@ def main():
             },
             "report.xlsx"
         )
-
-        # 3️⃣ Print summary
         display_summary(conn)
 
-        print("\n✅ Assignment 2 completed: Charts + Plotly + Excel Export")
+        print("\nAssignment 2 completed: Charts + Plotly + Excel Export")
 
     finally:
         conn.close()
-        print("🔒 Database connection closed.")
+        print("Database connection closed.")
 
 
 if __name__ == "__main__":

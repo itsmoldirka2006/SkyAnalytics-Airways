@@ -21,10 +21,8 @@ def plotly_time_slider(conn):
     """
     df = pd.read_sql(q, conn)
 
-    # Force datetime conversion, handling tz-aware values
     df["month"] = pd.to_datetime(df["month"], utc=True)
-
-    # Plotly line chart
+    
     fig = px.line(
         df,
         x="month",
@@ -41,7 +39,7 @@ def plotly_time_slider(conn):
     filepath = os.path.join("charts", "plotly_baggage_slider.html")
     fig.write_html(filepath)
 
-    print(f"📊 Saved interactive Plotly chart with time slider → {filepath}")
+    print(f"Saved interactive Plotly chart with time slider → {filepath}")
 
 def main():
     conn = connect_db()
