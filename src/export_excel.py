@@ -32,4 +32,4 @@ def export_to_excel(dataframes_dict, filename):
     wb.save(filepath)
 
     total_rows = sum(len(df) for df in dataframes_dict.values())
-    print(f"✅ Created file {filename}, {len(dataframes_dict)} sheets, {total_rows} rows")
+    print(f"Created file {filename}, {len(dataframes_dict)} sheets, {total_rows} rows")

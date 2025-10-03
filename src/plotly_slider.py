@@ -31,10 +31,8 @@ def plotly_time_slider(conn):
         markers=True
     )
 
-    # Add interactive time slider
     fig.update_xaxes(rangeslider_visible=True)
 
-    # Save HTML
     os.makedirs("charts", exist_ok=True)
     filepath = os.path.join("charts", "plotly_baggage_slider.html")
     fig.write_html(filepath)

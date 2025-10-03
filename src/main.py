@@ -23,7 +23,7 @@ def save_chart(fig, filename, description, rows):
     filepath = os.path.join("charts", filename)
     fig.savefig(filepath, bbox_inches="tight")
     plt.close(fig)
-    print(f"📊 Saved {filename} | {rows} rows | {description}")
+    print(f"Saved {filename} | {rows} rows | {description}")
 
 def create_charts(conn):
     q1 = """
@@ -53,6 +53,9 @@ def create_charts(conn):
     ax2.set_title("Top 10 Countries by Airline Count")
     ax2.set_xlabel("Country")
     ax2.set_ylabel("Number of Airlines")
+    ax2.set_xticks(range(len(df2["airline_country"])))
+    ax2.set_xticklabels(df2["airline_country"], rotation=45, ha="right")
+    plt.tight_layout()
     save_chart(fig2, "bar_airlines_country.png", "Bar chart of airlines per country", len(df2))
 
     q3 = """
@@ -60,7 +63,8 @@ def create_charts(conn):
         FROM booking bk
         JOIN baggage b ON bk.booking_id = b.booking_id
         GROUP BY bk.booking_platform
-        ORDER BY avg_weight DESC;
+        ORDER BY avg_weight DESC
+        LIMIT 10;
     """
     df3 = pd.read_sql(q3, conn)
     fig3, ax3 = plt.subplots()
@@ -120,6 +124,7 @@ def main():
     conn = connect_db()
     if not conn:
         return
+
     try:
         create_charts(conn)
         df_airlines = pd.read_sql("SELECT * FROM airline LIMIT 20;", conn)
@@ -133,8 +138,6 @@ def main():
             "report.xlsx"
         )
         display_summary(conn)
-
-        print("\nAssignment 2 completed: Charts + Plotly + Excel Export")
 
     finally:
         conn.close()
