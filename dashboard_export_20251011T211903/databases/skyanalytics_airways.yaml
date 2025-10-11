@@ -1,0 +1,14 @@
+database_name: skyanalytics airways
+sqlalchemy_uri: postgresql+psycopg2://postgres:XXXXXXXXXX@host.docker.internal:5432/skyanalytics_airways
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_dml: false
+allow_file_upload: false
+extra:
+  allows_virtual_table_explore: true
+impersonate_user: false
+uuid: 6aa9b493-b76b-46cd-8963-8089fe9569a0
+version: 1.0.0

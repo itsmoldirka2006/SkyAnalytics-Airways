@@ -1,0 +1,745 @@
+dashboard_title: Passenger Operations
+description: null
+css: null
+slug: null
+certified_by: null
+certification_details: null
+published: false
+uuid: 89e4640c-ae60-47b6-8e42-de5b8f61cd19
+metadata:
+  color_scheme_domain: []
+  shared_label_colors:
+  - Afghanistan
+  - Boarding
+  - Brazil
+  - China
+  - Croatia
+  - Delayed
+  - Departed
+  - Greece
+  - Indonesia
+  - Philippines
+  - Poland
+  - Russia
+  - SUM(flight_count)
+  - Slovenia
+  - Tanzania
+  - United States
+  - count
+  - "\u0421heck-in open"
+  map_label_colors: {}
+  label_colors: {}
+  chart_configuration:
+    '121':
+      id: 121
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '122':
+      id: 122
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '123':
+      id: 123
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '124':
+      id: 124
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '125':
+      id: 125
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '126':
+      id: 126
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '127':
+      id: 127
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '128':
+      id: 128
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '129':
+      id: 129
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '130':
+      id: 130
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '132':
+      id: 132
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '135':
+      id: 135
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 136
+        - 137
+        - 138
+        - 139
+        - 140
+    '136':
+      id: 136
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 137
+        - 138
+        - 139
+        - 140
+    '138':
+      id: 138
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 139
+        - 140
+    '139':
+      id: 139
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 140
+    '140':
+      id: 140
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 121
+        - 122
+        - 123
+        - 124
+        - 125
+        - 126
+        - 127
+        - 128
+        - 129
+        - 130
+        - 131
+        - 132
+        - 134
+        - 135
+        - 136
+        - 137
+        - 138
+        - 139
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 121
+    - 122
+    - 123
+    - 124
+    - 125
+    - 126
+    - 127
+    - 128
+    - 129
+    - 130
+    - 131
+    - 132
+    - 134
+    - 135
+    - 136
+    - 137
+    - 138
+    - 139
+    - 140
+  timed_refresh_immune_slices: []
+  expanded_slices: {}
+  refresh_frequency: 0
+  color_scheme: ''
+  cross_filters_enabled: true
+position:
+  DASHBOARD_VERSION_KEY: v2
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  GRID_ID:
+    children:
+    - ROW-N-1WL1DNX1
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Passenger Operations
+    type: HEADER
+  ROW-N-1WL1DNX1:
+    children:
+    - CHART-GPSI8IVQ
+    - CHART-J4LQVXFJ
+    - CHART-RCOKCD0J
+    - CHART-PYTJU6BT
+    - CHART-9S38ETDZ
+    - CHART-IORC3GM0
+    - CHART-9NMNSO42
+    - CHART-W8FYCIWM
+    - CHART-T04NNLHH
+    - CHART-OW00WQBN
+    - CHART-QOHB819N
+    - CHART-RBGCR3TF
+    - CHART-ZHLYPC3K
+    - CHART-QKV1RTVP
+    - CHART-31206DZW
+    - CHART-6SLPA7CD
+    - CHART-TB28CVM6
+    - CHART-S4G4XGGX
+    - CHART-Q7YBSAY8
+    id: ROW-N-1WL1DNX1
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    type: ROW
+    parents:
+    - ROOT_ID
+    - GRID_ID
+  CHART-GPSI8IVQ:
+    children: []
+    id: CHART-GPSI8IVQ
+    meta:
+      chartId: 135
+      height: 50
+      sliceName: Airport Hierarchy Sunburst
+      uuid: 44778156-3cf9-4da5-b0ef-c1ef0a90d98f
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-J4LQVXFJ:
+    children: []
+    id: CHART-J4LQVXFJ
+    meta:
+      chartId: 122
+      height: 50
+      sliceName: Seat Distribution by Section
+      uuid: 31ddecea-bd11-4408-9057-7128a93e1d3e
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-RCOKCD0J:
+    children: []
+    id: CHART-RCOKCD0J
+    meta:
+      chartId: 126
+      height: 50
+      sliceName: Daily Flight Schedule
+      uuid: d386a75f-0fcc-458f-a755-d3f89063b2ba
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-PYTJU6BT:
+    children: []
+    id: CHART-PYTJU6BT
+    meta:
+      chartId: 128
+      height: 50
+      sliceName: Top 10 Countries by Airline Count
+      uuid: e386d69e-35b0-4229-aefd-d9387d8b1c85
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-9S38ETDZ:
+    children: []
+    id: CHART-9S38ETDZ
+    meta:
+      chartId: 124
+      height: 50
+      sliceName: Flight Status Distribution
+      uuid: cedbed21-ff91-4bbe-b7c0-8e7863535153
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-IORC3GM0:
+    children: []
+    id: CHART-IORC3GM0
+    meta:
+      chartId: 123
+      height: 50
+      sliceName: Boarding Passes per Booking
+      uuid: 70378809-369e-4c28-bb7e-8a71b09f6ccf
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-9NMNSO42:
+    children: []
+    id: CHART-9NMNSO42
+    meta:
+      chartId: 136
+      height: 50
+      sliceName: '"Flight Count by Country and Status Treemap'
+      uuid: f86d7f4a-f96b-4ca6-8c70-d6aaa377ebfc
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-W8FYCIWM:
+    children: []
+    id: CHART-W8FYCIWM
+    meta:
+      chartId: 132
+      height: 50
+      sliceName: Baggage Weight vs Booking Price
+      uuid: 87cb4e6e-cef7-4657-a68e-1e658f156062
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-T04NNLHH:
+    children: []
+    id: CHART-T04NNLHH
+    meta:
+      chartId: 134
+      height: 50
+      sliceName: Flight Status by Airport Heatmap
+      uuid: 45f63c78-0a97-453e-b908-cbd86b461264
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-OW00WQBN:
+    children: []
+    id: CHART-OW00WQBN
+    meta:
+      chartId: 131
+      height: 50
+      sliceName: Baggage Weight Distribution
+      uuid: 10a9707d-bd16-421e-99de-bc1311b74e01
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-QOHB819N:
+    children: []
+    id: CHART-QOHB819N
+    meta:
+      chartId: 125
+      height: 50
+      sliceName: Flights by Departure Airport
+      uuid: 1f514d03-c5e3-47cc-991d-1d76fde52a54
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-RBGCR3TF:
+    children: []
+    id: CHART-RBGCR3TF
+    meta:
+      chartId: 127
+      height: 50
+      sliceName: Baggage Check Results Distribution
+      uuid: 5042ddd1-63ea-4086-b625-d37b790d54e6
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-ZHLYPC3K:
+    children: []
+    id: CHART-ZHLYPC3K
+    meta:
+      chartId: 129
+      height: 50
+      sliceName: Average Baggage Weight by Booking Platform
+      uuid: e8d6996c-6719-4dae-8056-63faf9d9c902
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-QKV1RTVP:
+    children: []
+    id: CHART-QKV1RTVP
+    meta:
+      chartId: 130
+      height: 50
+      sliceName: Monthly Baggage Creation Trend
+      uuid: ddc5a85d-4114-4b52-b084-a1e80175e031
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-31206DZW:
+    children: []
+    id: CHART-31206DZW
+    meta:
+      chartId: 121
+      height: 50
+      sliceName: Boarding Passes Over Time
+      uuid: 3932e9a9-7621-43d5-81cb-8489c8032249
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-6SLPA7CD:
+    children: []
+    id: CHART-6SLPA7CD
+    meta:
+      chartId: 138
+      height: 50
+      sliceName: Boarding Passes CSV (Static)
+      uuid: a986847f-3637-40fe-8310-18132a0ff17f
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-TB28CVM6:
+    children: []
+    id: CHART-TB28CVM6
+    meta:
+      chartId: 140
+      height: 50
+      sliceName: Baggage Weight Normalization
+      uuid: 7631581c-3dc0-4187-a5f4-a27877439b7d
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-S4G4XGGX:
+    children: []
+    id: CHART-S4G4XGGX
+    meta:
+      chartId: 139
+      height: 50
+      sliceName: Baggage Weight Metrics
+      uuid: 896a1f8c-2fe9-4aee-8bd5-2ddc2bd58c7f
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+  CHART-Q7YBSAY8:
+    children: []
+    id: CHART-Q7YBSAY8
+    meta:
+      chartId: 137
+      height: 50
+      sliceName: Airport Countries Word Cloud
+      uuid: 177567f0-f684-4ba6-aae1-e2338b53439c
+      width: 4
+    type: CHART
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-N-1WL1DNX1
+version: 1.0.0

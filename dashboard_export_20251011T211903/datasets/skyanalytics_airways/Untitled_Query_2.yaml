@@ -1,0 +1,62 @@
+table_name: Untitled Query 2
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: skyanalytics_airways
+schema: public
+sql: 'SELECT b.weight_in_kg, bk.price
+
+  FROM baggage b
+
+  JOIN booking bk ON b.booking_id = bk.booking_id
+
+  WHERE bk.price IS NOT NULL
+
+  LIMIT 500;'
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 06dd984a-19a1-4166-ad35-56d33529d118
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: weight_in_kg
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: price
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 6aa9b493-b76b-46cd-8963-8089fe9569a0

@@ -1,0 +1,64 @@
+table_name: Untitled Query 1
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: skyanalytics_airways
+schema: public
+sql: 'SELECT bk.booking_platform, ROUND(AVG(b.weight_in_kg), 2) AS avg_weight
+
+  FROM booking bk
+
+  JOIN baggage b ON bk.booking_id = b.booking_id
+
+  GROUP BY bk.booking_platform
+
+  ORDER BY avg_weight DESC
+
+  LIMIT 10;'
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: ccd221ed-a09f-438a-9cb2-936c51fef0b5
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: avg_weight
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: booking_platform
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 6aa9b493-b76b-46cd-8963-8089fe9569a0

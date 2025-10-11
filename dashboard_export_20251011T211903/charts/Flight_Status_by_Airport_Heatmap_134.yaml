@@ -1,0 +1,43 @@
+slice_name: Flight Status by Airport Heatmap
+description: null
+certified_by: null
+certification_details: null
+viz_type: heatmap_v2
+params:
+  datasource: 29__table
+  viz_type: heatmap_v2
+  x_axis: departure_airport_id
+  time_grain_sqla: P1D
+  groupby: status
+  metric: count
+  adhoc_filters:
+  - clause: WHERE
+    subject: scheduled_departure
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  row_limit: 10000
+  normalize_across: heatmap
+  legend_type: continuous
+  linear_color_scheme: superset_seq_1
+  xscale_interval: -1
+  yscale_interval: -1
+  left_margin: auto
+  bottom_margin: auto
+  value_bounds:
+  - null
+  - null
+  y_axis_format: SMART_NUMBER
+  x_axis_time_format: smart_date
+  show_legend: true
+  show_percentage: true
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":29,"type":"table"},"force":false,"queries":[{"filters":[{"col":"scheduled_departure","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1D","columnType":"BASE_AXIS","sqlExpression":"departure_airport_id","label":"departure_airport_id","expressionType":"SQL"},"status"],"metrics":["count"],"orderby":[],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[{"operation":"rank","options":{"metric":"count"}}]}],"form_data":{"datasource":"29__table","viz_type":"heatmap_v2","x_axis":"departure_airport_id","time_grain_sqla":"P1D","groupby":"status","metric":"count","adhoc_filters":[{"clause":"WHERE","subject":"scheduled_departure","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"row_limit":10000,"normalize_across":"heatmap","legend_type":"continuous","linear_color_scheme":"superset_seq_1","xscale_interval":-1,"yscale_interval":-1,"left_margin":"auto","bottom_margin":"auto","value_bounds":[null,null],"y_axis_format":"SMART_NUMBER","x_axis_time_format":"smart_date","show_legend":true,"show_percentage":true,"extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 45f63c78-0a97-453e-b908-cbd86b461264
+version: 1.0.0
+dataset_uuid: 663b6bda-06d1-42bc-9dea-5f3494876ae1

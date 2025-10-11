@@ -1,0 +1,71 @@
+slice_name: Baggage Weight Metrics
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 27__table
+  viz_type: table
+  query_mode: aggregate
+  groupby: []
+  time_grain_sqla: P1D
+  temporal_columns_lookup:
+    created_date: true
+    update_date: true
+  metrics:
+  - expressionType: SQL
+    sqlExpression: AVG(weight_in_kg)
+    column: null
+    aggregate: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: AVG(weight_in_kg)
+    optionName: metric_bvl4zs3tdh_fe40of0ss8
+  - expressionType: SQL
+    sqlExpression: PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY weight_in_kg)
+    column: null
+    aggregate: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY weight_in_kg)
+    optionName: metric_rql5bqlt6dq_qzt59jnxana
+  - expressionType: SQL
+    sqlExpression: STDDEV(weight_in_kg)
+    column: null
+    aggregate: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: STDDEV(weight_in_kg)
+    optionName: metric_6arxpifokix_w92rcoekp9
+  all_columns: []
+  percent_metrics: []
+  adhoc_filters:
+  - clause: WHERE
+    subject: created_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  order_by_cols: []
+  order_desc: true
+  row_limit: 1000
+  server_page_length: 10
+  table_timestamp_format: smart_date
+  allow_render_html: true
+  show_cell_bars: true
+  color_pn: true
+  comparison_color_scheme: Green
+  comparison_type: values
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":27,"type":"table"},"force":false,"queries":[{"filters":[{"col":"created_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"expressionType":"SQL","sqlExpression":"AVG(weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"AVG(weight_in_kg)","optionName":"metric_bvl4zs3tdh_fe40of0ss8"},{"expressionType":"SQL","sqlExpression":"PERCENTILE_CONT(0.5)
+  WITHIN GROUP (ORDER BY weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"PERCENTILE_CONT(0.5)
+  WITHIN GROUP (ORDER BY weight_in_kg)","optionName":"metric_rql5bqlt6dq_qzt59jnxana"},{"expressionType":"SQL","sqlExpression":"STDDEV(weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"STDDEV(weight_in_kg)","optionName":"metric_6arxpifokix_w92rcoekp9"}],"orderby":[[{"expressionType":"SQL","sqlExpression":"AVG(weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"AVG(weight_in_kg)","optionName":"metric_bvl4zs3tdh_fe40of0ss8"},false]],"annotation_layers":[],"row_limit":1000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[],"time_offsets":[]}],"form_data":{"datasource":"27__table","viz_type":"table","query_mode":"aggregate","groupby":[],"time_grain_sqla":"P1D","temporal_columns_lookup":{"created_date":true,"update_date":true},"metrics":[{"expressionType":"SQL","sqlExpression":"AVG(weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"AVG(weight_in_kg)","optionName":"metric_bvl4zs3tdh_fe40of0ss8"},{"expressionType":"SQL","sqlExpression":"PERCENTILE_CONT(0.5)
+  WITHIN GROUP (ORDER BY weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"PERCENTILE_CONT(0.5)
+  WITHIN GROUP (ORDER BY weight_in_kg)","optionName":"metric_rql5bqlt6dq_qzt59jnxana"},{"expressionType":"SQL","sqlExpression":"STDDEV(weight_in_kg)","column":null,"aggregate":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"STDDEV(weight_in_kg)","optionName":"metric_6arxpifokix_w92rcoekp9"}],"all_columns":[],"percent_metrics":[],"adhoc_filters":[{"clause":"WHERE","subject":"created_date","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"order_by_cols":[],"order_desc":true,"row_limit":1000,"server_page_length":10,"table_timestamp_format":"smart_date","allow_render_html":true,"show_cell_bars":true,"color_pn":true,"comparison_color_scheme":"Green","comparison_type":"values","extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 896a1f8c-2fe9-4aee-8bd5-2ddc2bd58c7f
+version: 1.0.0
+dataset_uuid: 1283547f-fbe0-4c9c-b848-89417797a035

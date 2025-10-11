@@ -1,0 +1,32 @@
+slice_name: Baggage Weight Distribution
+description: null
+certified_by: null
+certification_details: null
+viz_type: histogram_v2
+params:
+  datasource: 27__table
+  viz_type: histogram_v2
+  column: weight_in_kg
+  groupby: []
+  adhoc_filters:
+  - clause: WHERE
+    subject: created_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  row_limit: 10000
+  bins: 15
+  color_scheme: supersetColors
+  show_legend: true
+  x_axis_format: SMART_NUMBER
+  y_axis_format: SMART_NUMBER
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":27,"type":"table"},"force":false,"queries":[{"filters":[{"col":"created_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["weight_in_kg"],"annotation_layers":[],"row_limit":10000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[{"operation":"histogram","options":{"column":"weight_in_kg","groupby":[],"bins":15}}]}],"form_data":{"datasource":"27__table","viz_type":"histogram_v2","column":"weight_in_kg","groupby":[],"adhoc_filters":[{"clause":"WHERE","subject":"created_date","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"row_limit":10000,"bins":15,"color_scheme":"supersetColors","show_legend":true,"x_axis_format":"SMART_NUMBER","y_axis_format":"SMART_NUMBER","extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 10a9707d-bd16-421e-99de-bc1311b74e01
+version: 1.0.0
+dataset_uuid: 1283547f-fbe0-4c9c-b848-89417797a035

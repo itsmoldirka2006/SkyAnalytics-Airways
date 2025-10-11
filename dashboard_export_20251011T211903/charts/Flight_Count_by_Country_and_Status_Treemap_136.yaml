@@ -1,0 +1,52 @@
+slice_name: '"Flight Count by Country and Status Treemap'
+description: null
+certified_by: null
+certification_details: null
+viz_type: treemap_v2
+params:
+  datasource: 35__table
+  viz_type: treemap_v2
+  groupby:
+  - country
+  - status
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: flight_count
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: null
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: LONGINTEGER
+      type_generic: 0
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(flight_count)
+    optionName: metric_zdxjc7oj94_1r67w6yle3v
+  row_limit: 1000
+  adhoc_filters: []
+  color_scheme: supersetColors
+  show_labels: true
+  show_upper_labels: true
+  label_type: key_value
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":35,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["country","status"],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"flight_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":null,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"LONGINTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(flight_count)","optionName":"metric_zdxjc7oj94_1r67w6yle3v"}],"annotation_layers":[],"row_limit":1000,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"35__table","viz_type":"treemap_v2","groupby":["country","status"],"metric":{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"flight_count","description":null,"expression":null,"filterable":true,"groupby":true,"id":null,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"LONGINTEGER","type_generic":0,"verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(flight_count)","optionName":"metric_zdxjc7oj94_1r67w6yle3v"},"row_limit":1000,"adhoc_filters":[],"color_scheme":"supersetColors","show_labels":true,"show_upper_labels":true,"label_type":"key_value","number_format":"SMART_NUMBER","date_format":"smart_date","extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: f86d7f4a-f96b-4ca6-8c70-d6aaa377ebfc
+version: 1.0.0
+dataset_uuid: 010024c3-7ac7-45c5-99e0-96248e9efc83
