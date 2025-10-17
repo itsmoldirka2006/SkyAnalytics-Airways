@@ -1,7 +1,7 @@
 import psycopg2
 import time
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 db_config = {
     'host': 'localhost',
@@ -12,6 +12,7 @@ db_config = {
 }
 
 def get_next_boarding_pass_id():
+    """Get the next available boarding_pass_id"""
     conn = psycopg2.connect(**db_config)
     cursor = conn.cursor()
     
@@ -21,7 +22,7 @@ def get_next_boarding_pass_id():
         return next_id
     except Exception as e:
         print(f"Error getting next ID: {e}")
-        return 1  
+        return 1
     finally:
         cursor.close()
         conn.close()
@@ -31,18 +32,8 @@ def generate_boarding_pass():
     cursor = conn.cursor()
     
     try:
-        cursor.execute("""
-            SELECT b.booking_id 
-            FROM booking b 
-            LEFT JOIN boarding_pass bp ON b.booking_id = bp.booking_id 
-            WHERE bp.booking_id IS NULL 
-            LIMIT 100
-        """)
+        cursor.execute("SELECT booking_id FROM booking LIMIT 200")
         booking_ids = [row[0] for row in cursor.fetchall()]
-        
-        if not booking_ids:
-            cursor.execute("SELECT booking_id FROM booking LIMIT 100")
-            booking_ids = [row[0] for row in cursor.fetchall()]
         
         if not booking_ids:
             print("No valid bookings found")
@@ -53,8 +44,10 @@ def generate_boarding_pass():
         
         booking_id = random.choice(booking_ids)
         seat = f"{random.choice(['A', 'B', 'C', 'D', 'E', 'F'])}{random.randint(1, 30)}"
-        boarding_time = datetime.now().date()
-        created_at = datetime.now().date()
+        
+        current_time = datetime.now()
+        boarding_time = current_time
+        created_at = current_time.date()
         
         data_values = [next_id, booking_id, seat, boarding_time, created_at]
         
@@ -82,18 +75,13 @@ def insert_boarding_pass():
                 ({columns_str})
                 VALUES ({placeholders})
             '''
+            
             cursor.execute(query, data_values)
             conn.commit()
-            print(f"Inserted boarding pass ID {data_values[0]}: Booking {data_values[1]}, Seat {data_values[2]}")
+            print(f"Inserted boarding pass ID {data_values[0]}: Booking {data_values[1]}, Seat {data_values[2]} at {datetime.now().strftime('%H:%M:%S')}")
         else:
             print("Skipping insertion - no valid data generated")
             
-    except psycopg2.IntegrityError as e:
-        print(f"Integrity error: {e}")
-        conn.rollback()
-    except psycopg2.Error as e:
-        print(f"Database error: {e}")
-        conn.rollback()
     except Exception as e:
         print(f"Error: {e}")
         conn.rollback()
@@ -102,14 +90,21 @@ def insert_boarding_pass():
         conn.close()
 
 try:
-    print("Starting auto-insert script for boarding_pass table...")
-    print("Press Ctrl+C to stop")
+    print("STARTING ENHANCED AUTO-INSERT SCRIPT")
+    print("Inserting every 10 seconds for maximum visibility")
+    print("Script started at:", datetime.now().strftime('%H:%M:%S'))
+    print("Press Ctrl+C to stop\n")
     
     insert_count = 0
     while True:
         insert_boarding_pass()
         insert_count += 1
-        time.sleep(15)  
+  
+        for i in range(10, 0, -1):
+            print(f"Next insert in: {i} seconds", end='\r')
+            time.sleep(1)
+        print(" " * 30, end='\r')  
         
 except KeyboardInterrupt:
-    print(f"\nScript stopped by user. Total inserts: {insert_count}")
+    print(f"\n\nScript stopped by user. Total inserts: {insert_count}")
+    print("Script ended at:", datetime.now().strftime('%H:%M:%S'))

@@ -1,0 +1,68 @@
+table_name: Untitled Query 8
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: skyanalytics_airways
+schema: public
+sql: "SELECT \n  baggage_id,\n  weight_in_kg,\n  CASE \n    WHEN weight_in_kg <= 15\
+  \ THEN 'Low'\n    WHEN weight_in_kg <= 30 THEN 'Medium'\n    ELSE 'High'\n  END\
+  \ as weight_category\nFROM baggage\nLIMIT 100;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+uuid: 98d9c0bb-4a7c-4c20-9aeb-ff06b6a1ed22
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: weight_in_kg
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: baggage_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: weight_category
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: STRING
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 6aa9b493-b76b-46cd-8963-8089fe9569a0

@@ -1,0 +1,42 @@
+slice_name: Baggage Weight Categories
+description: null
+certified_by: null
+certification_details: null
+viz_type: pie
+params:
+  datasource: 39__table
+  viz_type: pie
+  groupby:
+  - weight_category
+  metric:
+    expressionType: SQL
+    sqlExpression: COUNT(*)
+    column: null
+    aggregate: null
+    datasourceWarning: true
+    hasCustomLabel: false
+    label: COUNT(*)
+    optionName: metric_j2sx8sv3c2_si5ppprt7nm
+  adhoc_filters: []
+  row_limit: 100
+  sort_by_metric: true
+  color_scheme: supersetColors
+  show_labels_threshold: 5
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  label_type: key
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  show_labels: true
+  labels_outside: true
+  outerRadius: 70
+  innerRadius: 30
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":39,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["weight_category"],"metrics":[{"expressionType":"SQL","sqlExpression":"COUNT(*)","column":null,"aggregate":null,"datasourceWarning":true,"hasCustomLabel":false,"label":"COUNT(*)","optionName":"metric_j2sx8sv3c2_si5ppprt7nm"}],"orderby":[[{"expressionType":"SQL","sqlExpression":"COUNT(*)","column":null,"aggregate":null,"datasourceWarning":true,"hasCustomLabel":false,"label":"COUNT(*)","optionName":"metric_j2sx8sv3c2_si5ppprt7nm"},false]],"annotation_layers":[],"row_limit":100,"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"39__table","viz_type":"pie","groupby":["weight_category"],"metric":{"expressionType":"SQL","sqlExpression":"COUNT(*)","column":null,"aggregate":null,"datasourceWarning":true,"hasCustomLabel":false,"label":"COUNT(*)","optionName":"metric_j2sx8sv3c2_si5ppprt7nm"},"adhoc_filters":[],"row_limit":100,"sort_by_metric":true,"color_scheme":"supersetColors","show_labels_threshold":5,"show_legend":true,"legendType":"scroll","legendOrientation":"top","label_type":"key","number_format":"SMART_NUMBER","date_format":"smart_date","show_labels":true,"labels_outside":true,"outerRadius":70,"innerRadius":30,"extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: cccdecf1-7dcb-4954-8d3a-e20fcea25d68
+version: 1.0.0
+dataset_uuid: 98d9c0bb-4a7c-4c20-9aeb-ff06b6a1ed22
