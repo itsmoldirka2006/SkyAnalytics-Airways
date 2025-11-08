@@ -55,5 +55,5 @@ The original dataset is located in `database/airport_dump.sql`. This file contai
 ### Quick Start
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
+   git clone <https://github.com/itsmoldirka2006/SkyAnalytics-Airways.gitl>
    cd assignment4
