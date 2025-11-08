@@ -75,8 +75,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "pg_locks_count",
+          "editorMode": "builder",
+          "expr": "pg_locks_count{datname=\"$database\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -169,8 +169,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(pg_stat_user_tables_seq_tup_read[5m])",
+          "editorMode": "builder",
+          "expr": "rate(pg_stat_user_tables_seq_tup_read{datname=\"$database\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -263,8 +263,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(pg_stat_user_tables_n_dead_tup[5m])",
+          "editorMode": "builder",
+          "expr": "rate(pg_stat_user_tables_n_dead_tup{datname=\"$database\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -327,8 +327,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "pg_stat_database_numbackends{datname=\"mydb\"}",
+          "editorMode": "builder",
+          "expr": "pg_stat_database_numbackends{datname=\"$database\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -391,8 +391,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "avg(rate(pg_stat_database_blks_hit{datname=\"mydb\"}[5m])) / (avg(rate(pg_stat_database_blks_hit{datname=\"mydb\"}[5m])) + avg(rate(pg_stat_database_blks_read{datname=\"mydb\"}[5m]))) * 100",
+          "editorMode": "builder",
+          "expr": "(avg by(datname) (rate(pg_stat_database_blks_hit{datname=\"$database\"}[5m])) * 100) / (avg by(datname) (rate(pg_stat_database_blks_hit[5m])) + (avg by(datname) (rate(pg_stat_database_blks_read[5m]))))",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -485,8 +485,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(pg_stat_database_tup_inserted{datname=\"mydb\"}[5m])",
+          "editorMode": "builder",
+          "expr": "rate(pg_stat_database_tup_inserted{datname=\"$database\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -579,8 +579,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(pg_stat_database_tup_fetched{datname=\"mydb\"}[5m])",
+          "editorMode": "builder",
+          "expr": "rate(pg_stat_database_tup_fetched{datname=\"$database\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -673,8 +673,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "rate(pg_stat_database_xact_commit{datname=\"mydb\"}[5m])",
+          "editorMode": "builder",
+          "expr": "rate(pg_stat_database_xact_commit{datname=\"$database\"}[5m])",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -737,8 +737,8 @@
       "pluginVersion": "12.2.1",
       "targets": [
         {
-          "editorMode": "code",
-          "expr": "pg_database_size_bytes{datname=\"mydb\"} / 1e9",
+          "editorMode": "builder",
+          "expr": "pg_database_size_bytes{datname=\"$database\"} / 1000000000",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -803,8 +803,8 @@
             "type": "prometheus",
             "uid": "ff2zzl2mns3k0a"
           },
-          "editorMode": "code",
-          "expr": "pg_stat_database_numbackends{datname=\"mydb\"}",
+          "editorMode": "builder",
+          "expr": "pg_stat_database_numbackends{datname=\"$database\"}",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -822,8 +822,10 @@
       {
         "allowCustomValue": false,
         "current": {
-          "text": "custom-exporter:8000",
-          "value": "custom-exporter:8000"
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
         },
         "definition": "label_values(up,instance)",
         "includeAll": true,
@@ -839,16 +841,41 @@
         "refresh": 2,
         "regex": "",
         "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {
+          "text": [
+            "mydb"
+          ],
+          "value": [
+            "mydb"
+          ]
+        },
+        "definition": "label_values(pg_stat_database_numbackends{datname=\"$database\"},datname)",
+        "includeAll": true,
+        "label": "Database",
+        "multi": true,
+        "name": "database",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(pg_stat_database_numbackends{datname=\"$database\"},datname)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 2,
+        "regex": "",
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Database Monitoring",
   "uid": "adqhlds",
-  "version": 14
+  "version": 27
 }

@@ -117,7 +117,7 @@
             "uid": "df2zeenkl31moa"
           },
           "editorMode": "code",
-          "expr": "weather_feels_like_celsius",
+          "expr": "weather_feels_like_celsius{city=\"$city\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "__auto",
@@ -217,6 +217,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "builder",
+          "expr": "rate(weather_requests_total{city=\"$city\"}[1m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "API Request Rate",
@@ -311,6 +324,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "code",
+          "expr": "weather_visibility_m{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Visibility",
@@ -375,6 +401,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "code",
+          "expr": "weather_cloudiness_percent{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Cloud Cover",
@@ -446,6 +485,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "code",
+          "expr": "weather_wind_speed_mps{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Wind Speed",
@@ -540,6 +592,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "builder",
+          "expr": "weather_pressure_hpa{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Atmospheric Pressure",
@@ -604,6 +669,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "builder",
+          "expr": "weather_humidity_percent{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Humidity %",
@@ -668,6 +746,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "builder",
+          "expr": "delta(weather_temperature_celsius{city=\"$city\"}[5m])",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "5-min Temperature Change",
@@ -762,6 +853,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "df2zeenkl31moa"
+          },
+          "editorMode": "builder",
+          "expr": "weather_temperature_celsius{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Temperature Trend",
@@ -830,6 +934,19 @@
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ff2zzl2mns3k0a"
+          },
+          "editorMode": "builder",
+          "expr": "weather_temperature_celsius{city=\"$city\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Current Temperature °C",
@@ -847,33 +964,21 @@
         "allowCustomValue": false,
         "current": {
           "text": [
-            "custom-exporter:8000",
-            "custom_exporter:8010",
-            "db_exporter:9187",
-            "localhost:9090",
-            "node-exporter:9100",
-            "node_exporter:9100",
-            "postgres-exporter:9187"
+            "Almaty"
           ],
           "value": [
-            "custom-exporter:8000",
-            "custom_exporter:8010",
-            "db_exporter:9187",
-            "localhost:9090",
-            "node-exporter:9100",
-            "node_exporter:9100",
-            "postgres-exporter:9187"
+            "Almaty"
           ]
         },
-        "definition": "label_values(up,instance)",
+        "definition": "label_values(weather_humidity_percent,city)",
         "includeAll": true,
-        "label": "Instance",
+        "label": "Сity",
         "multi": true,
-        "name": "instance",
+        "name": "city",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(up,instance)",
+          "query": "label_values(weather_humidity_percent,city)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
@@ -883,12 +988,12 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Weather Monitoring - Almaty",
   "uid": "adhjzl5",
-  "version": 13
+  "version": 32
 }
