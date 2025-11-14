@@ -51,7 +51,7 @@ def assignment_5_cup_fixed():
     
     step1_point_cloud = o3d.geometry.PointCloud()
     step1_point_cloud.points = mesh.vertices
-    step1_point_cloud.paint_uniform_color([0.3, 0.5, 0.9])  # Blue color
+    step1_point_cloud.paint_uniform_color([0.3, 0.5, 0.9])
 
     custom_draw_geometry_with_screenshot(step1_point_cloud, "step1_cup_original.png", "Step 1: Original Cup Model as Point Cloud")
     o3d.visualization.draw_geometries([step1_point_cloud], window_name="Step 1: Original Cup Model (Point Cloud)")
@@ -88,118 +88,137 @@ def assignment_5_cup_fixed():
     custom_draw_geometry_with_screenshot(mesh_reconstructed, "step3_cup_reconstructed.png", "Step 3: Reconstructed Cup")
     o3d.visualization.draw_geometries([mesh_reconstructed], window_name="Step 3: Reconstructed Cup")
     
+    # ========== STEP 4: VOXELIZATION - CORRECTED ==========
     print("\n" + "-" * 40)
     print("STEP 4: VOXELIZATION")
     
-    voxel_size = 0.1
+    # Convert point cloud to voxel grid with proper voxel size
+    voxel_size = 8.0
     voxel_grid = o3d.geometry.VoxelGrid.create_from_point_cloud(point_cloud, voxel_size=voxel_size)
     
+    # Print required information
+    print(f"Number of vertices: {len(point_cloud.points)}")
+    print(f"Has colors: {voxel_grid.has_colors()}")
     print(f"Voxel size: {voxel_size}")
     print(f"Number of voxels: {len(voxel_grid.get_voxels())}")
-    print(f"Has colors: {voxel_grid.has_colors()}")
     
+    # Display voxels
     custom_draw_geometry_with_screenshot(voxel_grid, "step4_cup_voxels.png", "Step 4: Cup Voxel Grid")
     o3d.visualization.draw_geometries([voxel_grid], window_name="Step 4: Cup Voxel Grid")
     
+    # ========== STEP 5: ADDING A PLANE ==========
     print("\n" + "-" * 40)
     print("STEP 5: ADDING A PLANE")
     
-    cup_height = bbox_max[1] - bbox_min[1]
-    cup_width = bbox_max[0] - bbox_min[0]
-    cup_depth = bbox_max[2] - bbox_min[2]
+    # Get mesh bounding box for proper plane positioning
+    bbox_mesh = mesh.get_axis_aligned_bounding_box()
+    extent = bbox_mesh.get_extent()
+    center = bbox_mesh.get_center()
     
-    table_width = cup_width * 2.5
-    table_depth = cup_depth * 2.5
-    
-    plane = o3d.geometry.TriangleMesh.create_box(width=table_width, height=0.02, depth=table_depth)
-    
-    table_x = bbox_center[0] - table_width/2
-    table_y = bbox_min[1] - 0.1
-    table_z = bbox_center[2] - table_depth/2
-    
-    plane.translate([table_x, table_y, table_z])
-    plane.paint_uniform_color([0.7, 0.7, 0.7])
-
-    cutting_plane_height = cup_height * 1.5
-    cutting_plane_depth = cup_depth * 1.5
-    cutting_plane_width = 0.1
-    
+    # Create vertical cutting plane
     cutting_plane = o3d.geometry.TriangleMesh.create_box(
-        width=cutting_plane_width, 
-        height=cutting_plane_height, 
-        depth=cutting_plane_depth
+        width=0.05,
+        height=extent[1] * 1.5,
+        depth=extent[2] * 1.5
     )
+    cutting_plane.paint_uniform_color([1, 0, 0])  # Red color
     
-    cutting_x = bbox_center[0] - cutting_plane_width/2
-    cutting_y = bbox_min[1] - 0.2
-    cutting_z = bbox_center[2] - cutting_plane_depth/2
+    # Position plane to cut through the center
+    cutting_plane.translate([
+        center[0] - 0.025,
+        bbox_mesh.min_bound[1] - extent[1] * 0.25,
+        bbox_mesh.min_bound[2] - extent[2] * 0.25
+    ])
     
-    cutting_plane.translate([cutting_x, cutting_y, cutting_z])
-    cutting_plane.paint_uniform_color([1.0, 0.6, 0.0])
+    print("Cutting plane created - slices cup in HALF!")
     
     cup_for_display = mesh
     cup_for_display.paint_uniform_color([0.3, 0.5, 0.9])
     
-    combined_geometries = [cup_for_display, plane, cutting_plane]
-    custom_draw_geometry_with_screenshot(combined_geometries, "step5_cup_with_planes.png", "Step 5: Cup with Planes")
-    o3d.visualization.draw_geometries([cup_for_display, plane, cutting_plane], 
-                                    window_name="Step 5: Cup with Planes")
+    combined_geometries = [cup_for_display, cutting_plane]
+    custom_draw_geometry_with_screenshot(combined_geometries, "step5_cup_with_planes.png", "Step 5: Cup with Cutting Plane")
+    o3d.visualization.draw_geometries([cup_for_display, cutting_plane], 
+                                    window_name="Step 5: Cup + Cutting Plane")
     
+    # ========== STEP 6: SURFACE CLIPPING ==========
     print("\n" + "-" * 40)
     print("STEP 6: SURFACE CLIPPING")
     
-    points = np.asarray(mesh.vertices)
+    vertices = np.asarray(mesh.vertices)
+    triangles = np.asarray(mesh.triangles)
+    
+    # Select triangles on left half by X-axis
+    center_x = (vertices[:, 0].min() + vertices[:, 0].max()) / 2
+    
+    valid_triangles = []
+    for tri in triangles:
+        v0, v1, v2 = vertices[tri[0]], vertices[tri[1]], vertices[tri[2]]
+        if v0[0] < center_x and v1[0] < center_x and v2[0] < center_x:
+            valid_triangles.append(tri)
+    
+    clipped_mesh = o3d.geometry.TriangleMesh()
+    clipped_mesh.vertices = mesh.vertices
+    clipped_mesh.triangles = o3d.utility.Vector3iVector(np.array(valid_triangles))
+    clipped_mesh.paint_uniform_color([0.7, 0.7, 0.7])
+    clipped_mesh.compute_vertex_normals()
+    
+    print(f"Original triangles: {len(mesh.triangles)}")
+    print(f"Remaining triangles after clipping: {len(clipped_mesh.triangles)}")
+    print(f"Number of remaining vertices: {len(clipped_mesh.vertices)}")
+    print(f"Has colors: {clipped_mesh.has_vertex_colors()}")
+    print(f"Has normals: {clipped_mesh.has_vertex_normals()}")
+    
+    custom_draw_geometry_with_screenshot(clipped_mesh, "step6_cup_clipped.png", "Step 6: Clipped Cup (Half)")
+    o3d.visualization.draw_geometries([clipped_mesh], window_name="Step 6: Clipped Cup (Half)")
 
-    clipping_threshold = bbox_center[0]
-    clipped_indices = points[:, 0] < clipping_threshold
-    clipped_points = points[clipped_indices]
-    
-    clipped_pcd = o3d.geometry.PointCloud()
-    clipped_pcd.points = o3d.utility.Vector3dVector(clipped_points)
-    
-    print(f"Original number of vertices: {len(points)}")
-    print(f"Remaining vertices after clipping: {len(clipped_points)}")
-    print(f"Percentage removed: {(1 - len(clipped_points)/len(points))*100:.1f}%")
-    
-    clipped_pcd.paint_uniform_color([0.8, 0.2, 0.2])
-    custom_draw_geometry_with_screenshot(clipped_pcd, "step6_cup_clipped.png", "Step 6: Clipped Cup")
-    o3d.visualization.draw_geometries([clipped_pcd], window_name="Step 6: Clipped Cup")
-
+    # ========== STEP 7: COLOR GRADIENT AND EXTREMES ==========
     print("\n" + "-" * 40)
-    print("STEP 7: COLOR GRADIENT AND EXTREME POINTS - ON CLIPPED MODEL")
+    print("STEP 7: COLOR GRADIENT AND EXTREME POINTS")
     
-    colored_clipped_pcd = o3d.geometry.PointCloud()
-    colored_clipped_pcd.points = o3d.utility.Vector3dVector(clipped_points)
+    vertices = np.asarray(mesh.vertices)
+    triangles = np.asarray(mesh.triangles)
     
-    clipped_points_array = np.asarray(clipped_points)
-    y_coords = clipped_points_array[:, 1]
-    y_min, y_max = np.min(y_coords), np.max(y_coords)
+    # Z-axis gradient: red (min) to blue (max)
+    z_values = vertices[:, 2]
+    z_min, z_max = z_values.min(), z_values.max()
+    z_normalized = (z_values - z_min) / (z_max - z_min)
     
-    colors = np.zeros((len(clipped_points_array), 3))
-    for i, y in enumerate(y_coords):
-        t = (y - y_min) / (y_max - y_min)
-        colors[i] = [t, 0.3, 1 - t] 
+    vertex_colors = np.zeros((len(vertices), 3))
+    vertex_colors[:, 0] = z_normalized  # Red channel
+    vertex_colors[:, 1] = 0.3           # Green channel fixed
+    vertex_colors[:, 2] = 1 - z_normalized  # Blue channel
     
-    colored_clipped_pcd.colors = o3d.utility.Vector3dVector(colors)
-    min_y_index = np.argmin(y_coords)
-    max_y_index = np.argmax(y_coords)
-    min_point = clipped_points_array[min_y_index]
-    max_point = clipped_points_array[max_y_index]
+    gradient_mesh = o3d.geometry.TriangleMesh()
+    gradient_mesh.vertices = mesh.vertices
+    gradient_mesh.triangles = mesh.triangles
+    gradient_mesh.vertex_colors = o3d.utility.Vector3dVector(vertex_colors)
+    gradient_mesh.compute_vertex_normals()
     
-    print(f"Lowest point in clipped model: {min_point} (Y = {min_point[1]:.4f})")
-    print(f"Highest point in clipped model: {max_point} (Y = {max_point[1]:.4f})")
-   
-    min_sphere = o3d.geometry.TriangleMesh.create_sphere(radius=0.03)
-    min_sphere.translate(min_point)
-    min_sphere.paint_uniform_color([0, 1, 0])  
+    # Find extreme points along Z-axis
+    min_idx = np.argmin(z_values)
+    max_idx = np.argmax(z_values)
+    min_point = vertices[min_idx]
+    max_point = vertices[max_idx]
     
-    max_sphere = o3d.geometry.TriangleMesh.create_sphere(radius=0.03)
-    max_sphere.translate(max_point)
-    max_sphere.paint_uniform_color([1, 0, 0])  
+    print(f"Minimum Z point (BOTTOM): {min_point}")
+    print(f"Maximum Z point (TOP): {max_point}")
+    print(f"Gradient range: Z from {z_min:.3f} to {z_max:.3f}")
     
-    final_geometries = [colored_clipped_pcd, min_sphere, max_sphere]
-    custom_draw_geometry_with_screenshot(final_geometries, "step7_cup_gradient_extremes.png", "Step 7: Clipped Cup with Gradient and Extreme Points")
-    o3d.visualization.draw_geometries([colored_clipped_pcd, min_sphere, max_sphere], 
-                                    window_name="Step 7: Clipped Cup with Gradient and Extreme Points")
+    # Extreme points marked with spheres - adjusted size for cup
+    sphere_radius = 2.0
+    
+    sphere_min = o3d.geometry.TriangleMesh.create_sphere(radius=sphere_radius)
+    sphere_min.paint_uniform_color([1, 0, 0])  # Red for minimum
+    sphere_min.translate(min_point)
+    
+    sphere_max = o3d.geometry.TriangleMesh.create_sphere(radius=sphere_radius)
+    sphere_max.paint_uniform_color([0, 0, 1])  # Blue for maximum
+    sphere_max.translate(max_point)
+    
+    final_geometries = [gradient_mesh, sphere_min, sphere_max]
+    custom_draw_geometry_with_screenshot(final_geometries, "step7_cup_gradient_extremes.png", "Step 7: Cup with Gradient and Extremes")
+    o3d.visualization.draw_geometries([gradient_mesh, sphere_min, sphere_max], 
+                                    window_name="Step 7: Gradient Cup with Extremes")
+
 if __name__ == "__main__":
     assignment_5_cup_fixed()
